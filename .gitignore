@@ -1,0 +1,4 @@
+/resume-site
+.terraform.lock.hcl
+terraform.tfstate.backup
+.terraform

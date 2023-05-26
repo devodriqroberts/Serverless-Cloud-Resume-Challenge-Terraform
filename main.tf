@@ -40,13 +40,13 @@ module "database" {
   project              = var.project
 }
 
-# Application #====================================
-module "application" {
-  source                        = "./modules/application"
-  serverless_deploy_api_name    = var.serverless_deploy_api_name
-  serverless_deploy_api_stage   = var.serverless_deploy_api_stage
-  serverless_deploy_domain_name = module.networking.serverless_deploy_domain_name
-  aws_dynamo_db_arn             = module.database.aws_dynamo_db_arn
-  environment                   = var.environment
-  project                       = var.project
-}
+# # Application #====================================
+# module "application" {
+#   source                        = "./modules/application"
+#   serverless_deploy_api_name    = var.serverless_deploy_api_name
+#   serverless_deploy_api_stage   = var.serverless_deploy_api_stage
+#   # serverless_deploy_domain_name = module.networking.serverless_deploy_domain_name
+#   aws_dynamo_db_arn             = module.database.aws_dynamo_db_arn
+#   environment                   = var.environment
+#   project                       = var.project
+# }

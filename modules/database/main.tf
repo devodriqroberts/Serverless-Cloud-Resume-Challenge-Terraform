@@ -29,14 +29,14 @@ resource "aws_dynamodb_table" "dynamodb_table" {
   }
 }
 
-resource "aws_dynamodb_table_item" "visitor_count_item" {
-  table_name = aws_dynamodb_table.dynamodb_table.name
-  hash_key   = aws_dynamodb_table.dynamodb_table.hash_key
+# resource "aws_dynamodb_table_item" "visitor_count_item" {
+#   table_name = aws_dynamodb_table.dynamodb_table.name
+#   hash_key   = aws_dynamodb_table.dynamodb_table.hash_key
 
-  item = <<ITEM
-  {
-    "ID": {"S": "VisitorCount"},
-    "VisitorCount": {"N": "0"}
-  }
-  ITEM
-}
+#   item = <<ITEM
+#   {
+#     "ID": {"S": "VisitorCount"},
+#     "VisitorCount": {"N": "0"}
+#   }
+#   ITEM
+# }

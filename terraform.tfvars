@@ -1,5 +1,5 @@
 region                      = "us-east-1"
-domain_name                 = "serverless.devodriqroberts.com"
+domain_name                 = "devodriqroberts.com"
 dynamo_db_table_name        = "cloud_resume_challenge_serverless"
 hostedzone_id               = "Z05098842II2E0776MPUB"
 cloudfront_hostedzone_id    = "Z2FDTNDATAQYW2"

@@ -13,9 +13,10 @@
 
 # ACM Certificate #=================================================================
 resource "aws_acm_certificate" "cert" {
-  domain_name       = "*.${var.domain_name}"
+  domain_name       = "${var.domain_name}"
   validation_method = "DNS"
-  subject_alternative_names = ["${var.domain_name}", "*.${var.domain_name}"]
+  # subject_alternative_names = ["${var.domain_name}", "*.${var.domain_name}"]
+  subject_alternative_names = ["${var.domain_name}", "*.${var.domain_name}", "serverless.${var.domain_name}", "*.serverless.${var.domain_name}"]
   tags = {
     Name = "Serverless Cloud Resume Challenge ACM Certificate"
     Environment = "${var.environment}"
@@ -24,9 +25,19 @@ resource "aws_acm_certificate" "cert" {
 }
 
 # Route 53 Records #=================================================================
+# resource "aws_route53_record" "www" {
+#   zone_id = "${var.hostedzone_id}"
+#   name    = "${var.domain_name}"
+#   type    = "A"
+#   alias {
+#     name = aws_cloudfront_distribution.s3_distribution.domain_name
+#     zone_id = "${var.cloudfront_hostedzone_id}"
+#     evaluate_target_health = false
+#   }
+# }
 resource "aws_route53_record" "www" {
   zone_id = "${var.hostedzone_id}"
-  name    = "${var.domain_name}"
+  name    = "serverless.${var.domain_name}"
   type    = "A"
   alias {
     name = aws_cloudfront_distribution.s3_distribution.domain_name
@@ -71,7 +82,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   comment             = "Cloud Resume Challenge Serverless Distribution"
   default_root_object = "index.html"
 
-  aliases = ["${var.domain_name}"]
+  aliases = ["serverless.${var.domain_name}"]
   http_version = "http2and3"
 
   default_cache_behavior {
